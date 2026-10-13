@@ -12,16 +12,16 @@ from EmotionDetection.emotion_detection import emotion_detector
 #Initiate the flask app : TODO
 app = Flask("__name__")
 @app.route("/emotionDetector")
-def sent_analyzer():
+def sent_analyser():
     ''' This code receives the text from the HTML interface and 
     runs emotion detector over it using emotion_detector()
     function. The output returned shows the label and its confidence 
     score for the provided text.
     '''
-    # Retrieve the text to analyze from the request arguments
-    text_to_analyze = request.args.get('textToAnalyze')
+    # Retrieve the text to analyse from the request arguments
+    text_to_analyse = request.args.get('textToAnalyse')
     # Pass the text to the emotion_detector function and store the response
-    response = emotion_detector(text_to_analyze)
+    response = emotion_detector(text_to_analyse)
     # Extract the label and score from the response
     anger = response['anger']
     disgust = response['disgust']
@@ -30,7 +30,7 @@ def sent_analyzer():
     sadness = response['sadness']
     dominant_emotion = response['dominant_emotion']
     if dominant_emotion is None:
-        return "Invalid text! Please try again!"
+        return "Invalid input! Try again!"
     # Return a formatted string with the sentiment label and score
     return (
         f"For the given statement, the system response is " 
